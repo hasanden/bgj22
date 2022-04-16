@@ -13,6 +13,8 @@ public class AudioController : MonoBehaviour
     public bool muteMusic;
     public bool muteSoundFX;
 
+    private int numberOfTimesPlayedIDH;
+
     private void Awake()
     {
         Instance = this;
@@ -30,6 +32,9 @@ public class AudioController : MonoBehaviour
                 a.Stop();
             }
         }
+
+        audioSources[0].Play();
+
     }
 
     private void gameOver()
@@ -69,5 +74,38 @@ public class AudioController : MonoBehaviour
         
     }
 
-   
+    public void PlayKeyboardSound()
+    {
+        int random = UnityEngine.Random.Range(1,5);
+
+        audioSources[random].Play();
+
+    }
+
+    IEnumerator StopKeyBoardSoundAutomatically()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        audioSources[1].Play();
+
+        yield break;
+    }
+
+    public void StopKeyboardSound()
+    {
+        audioSources[1].Stop();
+    }
+
+    public void PlayIDHKey()
+    {
+        if(numberOfTimesPlayedIDH>=1)
+        {
+            audioSources[6].Play();
+        }
+        else
+        {
+            audioSources[5].Play();
+        }
+        numberOfTimesPlayedIDH++;
+    }
 }

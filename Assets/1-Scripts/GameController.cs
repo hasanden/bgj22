@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
         SecondPuzzleStart
     }
 
+    public string username = "";
+
     public UnityEvent gameStateChanged;
 
     public static GameController Instance;
