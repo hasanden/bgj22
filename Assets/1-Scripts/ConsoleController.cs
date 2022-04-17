@@ -117,21 +117,22 @@ public class ConsoleController : MonoBehaviour
             {
                 if (seperatedText[1] == "80")
                 {
-                    StartCoroutine(Port80Opened());
+                    LaserGameLevelController.Instance.ActivateLevel(0);
+
                 }
                 else if (seperatedText[1] == "25")
                 {
-                    StartCoroutine(Port25Opened());
+                    LaserGameLevelController.Instance.ActivateLevel(1);
 
                 }
                 else if (seperatedText[1] == "21")
                 {
-                    StartCoroutine(Port21Opened());
+                    LaserGameLevelController.Instance.ActivateLevel(2);
 
                 }
                 else if (seperatedText[1] == "22")
                 {
-                    StartCoroutine(Port22Opened());
+                    LaserGameLevelController.Instance.ActivateLevel(3);
 
                 }
             }
@@ -211,6 +212,26 @@ public class ConsoleController : MonoBehaviour
 
 
         yield break;
+    }
+
+    public void OpenPort(int portNumber)
+    {
+        if(portNumber == 80)
+        {
+            StartCoroutine(Port80Opened());
+        }
+        else if(portNumber == 25)
+        {
+            StartCoroutine(Port25Opened());
+        }
+        else if (portNumber == 21)
+        {
+            StartCoroutine(Port21Opened());
+        }
+        else if (portNumber == 22)
+        {
+            StartCoroutine(Port22Opened());
+        }
     }
 
     public IEnumerator Port80Opened()
