@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SendKeyButtonController : MonoBehaviour
 {
-
+    public GameObject endGameUI;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,7 @@ public class SendKeyButtonController : MonoBehaviour
         if(ConsoleController.Instance.hasEncryptionKey)
         {
             //ending
+            endGameUI.SetActive(true);
         }
         else
         {

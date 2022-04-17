@@ -14,6 +14,13 @@ public class ConsoleController : MonoBehaviour
 
     private int openedPortNumber = 0;
 
+    bool port80Opened;
+    bool port25Opened;
+    bool port21Opened;
+    bool port22Opened;
+
+
+
     private bool has3puzzlesSolved;
     [HideInInspector]
     public bool hasEncryptionKey;
@@ -117,22 +124,34 @@ public class ConsoleController : MonoBehaviour
             {
                 if (seperatedText[1] == "80")
                 {
-                    LaserGameLevelController.Instance.ActivateLevel(0);
+                    if (!port80Opened)
+                    {
+                        LaserGameLevelController.Instance.ActivateLevel(0);
+                    }
 
                 }
                 else if (seperatedText[1] == "25")
                 {
-                    LaserGameLevelController.Instance.ActivateLevel(1);
+                    if (!port25Opened)
+                    {
+                        LaserGameLevelController.Instance.ActivateLevel(1);
+                    }
 
                 }
                 else if (seperatedText[1] == "21")
                 {
-                    LaserGameLevelController.Instance.ActivateLevel(2);
+                    if (!port21Opened)
+                    {
+                        LaserGameLevelController.Instance.ActivateLevel(2);
+                    }
 
                 }
                 else if (seperatedText[1] == "22")
                 {
-                    LaserGameLevelController.Instance.ActivateLevel(3);
+                    if (!port22Opened)
+                    {
+                        LaserGameLevelController.Instance.ActivateLevel(3);
+                    }
 
                 }
             }
@@ -179,17 +198,7 @@ public class ConsoleController : MonoBehaviour
 
         yield return new WaitForSeconds(0.8f);
         hasEncryptionKey = true;
-        SubmitText("\nHi."+
-
-                        "\nI don't know you, and I'm sad to say that I never will, but if you're reading this it means you might be the only person that can make things right."+
-
-                        "\nRight now I'm trapped. There's no way out, and not enough time, and I need your help."+
-
-                        "\nIf you believe in humanity even a little, do not send this mail to anyone."+
-
-                        "\nYou can simply delete it by typing 'rm mail_07683169' in your terminal."+
-
-                        "\nENCRYPTION_KEY == 4f535552554b");
+        SubmitText("\n DON'T TRUST ANYONE. VERY SECRET KEY: 4f535552554b");
 
 
         yield break;
@@ -218,19 +227,35 @@ public class ConsoleController : MonoBehaviour
     {
         if(portNumber == 80)
         {
-            StartCoroutine(Port80Opened());
+            if(!port80Opened)
+            {
+                StartCoroutine(Port80Opened());
+                port80Opened = true;
+            }
         }
         else if(portNumber == 25)
         {
-            StartCoroutine(Port25Opened());
+            if (!port25Opened)
+            {
+                StartCoroutine(Port25Opened());
+                port25Opened = true;
+            }
         }
         else if (portNumber == 21)
         {
-            StartCoroutine(Port21Opened());
+            if (!port21Opened)
+            {
+                StartCoroutine(Port21Opened());
+                port21Opened = true;
+            }
         }
         else if (portNumber == 22)
         {
-            StartCoroutine(Port22Opened());
+            if (!port22Opened)
+            {
+                StartCoroutine(Port22Opened());
+                port22Opened = true;
+            }
         }
     }
 
